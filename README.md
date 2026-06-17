@@ -14,6 +14,7 @@ Duplicat-Clearner scannt einen Ordner und findet echte Duplikate. Die Erkennung 
 - Duplikate mit einem Klick auswählen
 - ausgewählte Duplikate sicher in Quarantäne verschieben
 - keine Cloud, läuft lokal auf deinem PC
+- Windows-EXE per GitHub Actions bauen
 
 ## Sicherheit
 
@@ -27,7 +28,29 @@ C:\Users\Name\Pictures\.quarantine-duplicates
 
 So kannst du die Dateien kontrollieren und bei Bedarf wiederherstellen.
 
-## Start unter Windows
+## Windows-App über GitHub Actions bauen
+
+Die GitHub Action liegt hier:
+
+```text
+.github/workflows/build-windows.yml
+```
+
+Sie läuft automatisch bei jedem Push auf `main` und kann zusätzlich manuell gestartet werden:
+
+1. In GitHub auf **Actions** gehen.
+2. **Build Windows App** auswählen.
+3. Auf **Run workflow** klicken.
+4. Nach dem Build unten unter **Artifacts** die Datei `Duplicat-Clearner-Windows` herunterladen.
+5. ZIP entpacken und `Duplicat-Clearner.exe` starten.
+
+Die EXE startet lokal einen kleinen Webserver und öffnet automatisch:
+
+```text
+http://127.0.0.1:8787
+```
+
+## Start unter Windows ohne EXE-Build
 
 1. Repository herunterladen oder klonen.
 2. `start-windows.bat` doppelt anklicken.
