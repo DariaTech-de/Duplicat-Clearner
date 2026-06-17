@@ -27,7 +27,7 @@ STATIC_DIR = BASE_DIR / "web"
 LAST_SCAN: dict | None = None
 ALLOWED_PREVIEW_PATHS: set[str] = set()
 
-app = FastAPI(title="Duplicat-Clearner", version="0.3.0")
+app = FastAPI(title="Duplicat-Clearner", version="0.3.1")
 
 app.add_middleware(
     CORSMiddleware,
@@ -41,7 +41,6 @@ app.mount("/assets", StaticFiles(directory=STATIC_DIR), name="assets")
 
 
 class ScanRequest(BaseModel):
-    # Backwards compatible: old frontend sent one folder.
     folder: str | None = None
     folders: List[str] = Field(default_factory=list)
     include_all_files: bool = False
@@ -70,6 +69,23 @@ def index() -> FileResponse:
 @app.get("/health")
 def health() -> dict:
     return {"status": "ok"}
+
+
+@app.get("/api/select-folder")
+def select_folder() -> dict:
+    """Open a native folder picker on the local machine and return the selected path."""
+    try:
+        import tkinter as tk
+        from tkinter import filedialog
+
+        root = tk.Tk()
+        root.withdraw()
+        root.attributes("-topmost", True)
+        folder = filedialog.askdirectory(title="Ordner für Duplicat-Clearner auswählen", mustexist=True)
+        root.destroy()
+        return {"folder": folder or ""}
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"Ordnerauswahl konnte nicht geöffnet werden: {exc}") from exc
 
 
 def _request_to_options(request: ScanRequest) -> ScanOptions:
