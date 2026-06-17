@@ -1,32 +1,66 @@
 # Duplicat-Clearner
 
-Ein lokales Tool zum Finden und sicheren Entfernen von mehrfach vorhandenen Dateien, Bildern und Videos.
+Ein lokales Tool zum Finden und sicheren Bereinigen von mehrfach vorhandenen Dateien, Bildern und Videos.
 
-## Was macht das Tool?
+## Ziel
 
-Duplicat-Clearner scannt einen Ordner und findet echte Duplikate. Die Erkennung basiert nicht nur auf Dateinamen, sondern auf einem SHA-256-Hash. Dadurch werden nur Dateien als Duplikat markiert, wenn der Inhalt wirklich identisch ist.
+Duplicat-Clearner soll für Kundenordner, Fotoarchive, Videoarchive, alte Backups und gemischte Datenbestände eingesetzt werden. Die App läuft lokal, lädt nichts in eine Cloud hoch und verschiebt Dateien standardmäßig zuerst in Quarantäne oder in den Windows-Papierkorb.
 
 ## Funktionen
 
-- Dateien, Bilder und Videos scannen
-- echte Duplikate per SHA-256 erkennen
-- älteste Datei wird automatisch als Original vorgeschlagen
-- Duplikate mit einem Klick auswählen
-- ausgewählte Duplikate sicher in Quarantäne verschieben
-- keine Cloud, läuft lokal auf deinem PC
+- mehrere Ordner gleichzeitig scannen
+- Duplikate auch ordnerübergreifend finden
+- exakte Duplikate per SHA-256 erkennen
+- ähnliche Bilder per Bild-Fingerprint erkennen
+- Bilder, Videos, Dokumente, Archive oder alle Dateitypen scannen
+- Mindestgröße und Maximalgröße filtern
+- Ordner/Begriffe ausschließen, zum Beispiel `temp`, `cache`, `.git`
+- Auswahlregel wählen: älteste, neueste, größte, kleinste Datei, höchste Bildauflösung usw.
+- Bildvorschau direkt in der Oberfläche
+- Bereinigung per Quarantäne oder Windows-Papierkorb
+- JSON- und CSV-Berichte exportieren
 - Windows-EXE per GitHub Actions bauen
 
 ## Sicherheit
 
-Das Tool löscht Dateien nicht sofort endgültig. Ausgewählte Duplikate werden zuerst in den Ordner `.quarantine-duplicates` innerhalb des gescannten Ordners verschoben.
+Das Tool löscht Dateien nicht sofort endgültig. Endgültiges Löschen ist in der API bewusst gesperrt. Empfohlen ist:
+
+1. Erst scannen.
+2. Vorschläge kontrollieren.
+3. Bericht als CSV/JSON exportieren.
+4. Dateien in Quarantäne oder Papierkorb verschieben.
+5. Nach Kontrolle final löschen.
+
+Quarantäne-Ordner pro Scan-Root:
+
+```text
+.quarantine-duplicates
+```
 
 Beispiel:
 
 ```text
-C:\Users\Name\Pictures\.quarantine-duplicates
+D:\Kundendaten\.quarantine-duplicates
 ```
 
-So kannst du die Dateien kontrollieren und bei Bedarf wiederherstellen.
+## Typischer Kunden-Workflow
+
+1. Kundenordner zeilenweise eintragen:
+
+```text
+D:\Kunde\Fotos
+D:\Kunde\Videos
+E:\Altes Backup
+```
+
+2. Kategorien wählen, zum Beispiel Bilder und Videos.
+3. Optional ähnliche Bilder aktivieren.
+4. Als Behalte-Regel zum Beispiel `Bild mit höchster Auflösung behalten` auswählen.
+5. Analyse starten.
+6. Ergebnisse prüfen.
+7. CSV-Bericht exportieren.
+8. Empfohlene Duplikate auswählen.
+9. In Quarantäne oder Papierkorb verschieben.
 
 ## Windows-App über GitHub Actions bauen
 
@@ -73,22 +107,16 @@ Danach öffnen:
 http://127.0.0.1:8787
 ```
 
-## Ordner scannen
+## Hinweis zu ähnlichen Bildern
 
-Im Feld `Ordnerpfad` den gewünschten Pfad eintragen, zum Beispiel:
+Die ähnliche Bildersuche nutzt einen Difference-Hash. Das erkennt häufig verkleinerte, komprimierte oder leicht geänderte Versionen eines Bildes. Es ist bewusst als Vorschlag zu verstehen und sollte vor der Bereinigung kontrolliert werden.
 
-```text
-C:\Users\Ahmad\Pictures
-```
+## Nächste sinnvolle Profi-Funktionen
 
-oder:
-
-```text
-/home/ahmad/Bilder
-```
-
-Dann auf **Scannen** klicken.
-
-## Hinweis
-
-Bei sehr großen Video-Ordnern kann der Scan länger dauern, weil große Dateien vollständig gelesen werden müssen, damit der Hash sicher berechnet werden kann.
+- echter Windows-Installer mit Startmenü-Eintrag
+- Scan-Fortschritt in Echtzeit
+- gespeicherte Scan-Profile pro Kunde
+- Undo-Ansicht für Quarantäne
+- Video-Fingerprint über einzelne Frames
+- Musik-Duplikate über Audio-Fingerprinting und Tags
+- automatische Signatur der EXE gegen SmartScreen-Warnungen
