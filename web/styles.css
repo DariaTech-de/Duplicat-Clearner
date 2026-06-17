@@ -24,6 +24,8 @@ h1 { margin: 0; font-size: clamp(36px, 5vw, 68px); letter-spacing: -0.06em; line
 .panel { padding: 22px; margin-bottom: 18px; }
 .grid-panel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .wide { grid-column: 1 / -1; }
+.label-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.label-row label { margin-bottom: 0; }
 label { display: block; color: #e4e4e7; font-weight: 700; margin-bottom: 10px; }
 input[type="text"], input[type="number"], textarea, select {
   width: 100%; border: 1px solid rgba(255,255,255,.13); background: rgba(0,0,0,.28); color: #fff;
@@ -37,6 +39,7 @@ button:hover { transform: translateY(-1px); }
 button:disabled { opacity: .55; cursor: wait; transform: none; }
 .secondary { background: rgba(255,255,255,.1); color: #f4f4f5; }
 .danger { background: #dc2626; }
+.small-btn { padding: 9px 13px; border-radius: 12px; white-space: nowrap; }
 .controls { display: flex; flex-wrap: wrap; gap: 10px; }
 .chips { display: flex; flex-wrap: wrap; gap: 10px; }
 .chips label, .inline-field { display: flex; align-items: center; gap: 9px; margin: 0; border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.06); border-radius: 999px; padding: 10px 13px; color: #d4d4d8; font-weight: 700; }
@@ -66,6 +69,7 @@ button:disabled { opacity: .55; cursor: wait; transform: none; }
 .delete-label { background: rgba(239,68,68,.13); color: #fca5a5; }
 @media (max-width: 920px) {
   .hero, .grid-panel { display: flex; flex-direction: column; }
+  .label-row { align-items: stretch; flex-direction: column; }
   .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .badge { white-space: normal; }
   .file-row { grid-template-columns: 28px 64px 1fr; }
