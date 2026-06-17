@@ -2,7 +2,14 @@
 
 from PyInstaller.utils.hooks import collect_submodules
 
-hiddenimports = collect_submodules('uvicorn') + collect_submodules('fastapi') + collect_submodules('starlette')
+hiddenimports = (
+    collect_submodules('app')
+    + collect_submodules('uvicorn')
+    + collect_submodules('fastapi')
+    + collect_submodules('starlette')
+    + collect_submodules('PIL')
+    + collect_submodules('send2trash')
+)
 
 a = Analysis(
     ['app/launcher.py'],
