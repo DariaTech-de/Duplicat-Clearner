@@ -3,7 +3,7 @@ from __future__ import annotations
 from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel, Field
 
-from app.job_runner import runner
+from app.job_runner_v2 import runner
 from app.scanner import ScanOptions
 
 router = APIRouter(prefix="/api/v1", tags=["enterprise"])
@@ -46,6 +46,8 @@ def capabilities() -> dict:
         "background_scans": True,
         "scan_history": True,
         "client_ready": True,
+        "live_progress": True,
+        "cancellable_scans": True,
     }
 
 
@@ -66,6 +68,14 @@ def scan_status(scan_id: str) -> dict:
     if item is None:
         raise HTTPException(status_code=404, detail="Scan not found")
     return item
+
+
+@router.post("/scans/{scan_id}/stop")
+def stop_scan(scan_id: str) -> dict:
+    accepted = runner.request_stop(scan_id)
+    if not accepted:
+        raise HTTPException(status_code=404, detail="Running scan not found")
+    return {"scan_id": scan_id, "stop_requested": True}
 
 
 @router.get("/scans/{scan_id}/result")
