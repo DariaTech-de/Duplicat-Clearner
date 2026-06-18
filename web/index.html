@@ -3,27 +3,37 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Duplicat-Clearner</title>
+  <title>DariaTech Data Cleanup</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
   <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
   <main class="app-shell">
     <header class="hero">
       <div class="hero-text">
-        <p class="eyebrow">Lokales Cleanup &amp; Konsolidierung für Kundendaten</p>
-        <h1>Duplicat-Clearner</h1>
+        <div class="brand-lockup">
+          <img class="logo-mark" src="/assets/icon.svg" alt="DariaTech Data Cleanup Logo" width="60" height="60">
+          <div class="brand-names">
+            <div class="brand-parent">DariaTech</div>
+            <h1>Data Cleanup</h1>
+          </div>
+        </div>
+        <p class="eyebrow">IT-Systemhaus · Lokales Cleanup &amp; Konsolidierung</p>
         <p class="lead">Mehrere Ordner gleichzeitig scannen, exakte Duplikate und ähnliche Bilder finden und die
           sauberen, duplikatfreien Dateien in einen neuen Zielordner zusammenführen. Alles lokal, mit Live-Fortschritt
           und Quarantäne als Sicherheitsnetz.</p>
         <div class="capabilities" id="capabilities"></div>
       </div>
-      <div class="hero-badge">
-        <span class="dot"></span>
-        <div>
-          <strong>100 % lokal</strong>
-          <small>Keine Cloud · Daten bleiben auf dem Gerät</small>
+      <aside class="hero-aside">
+        <button class="help-launch" id="openHelpBtn" type="button">📘 Anleitung &amp; Hilfe</button>
+        <div class="hero-badge">
+          <span class="dot"></span>
+          <div>
+            <strong>100 % lokal</strong>
+            <small>Keine Cloud · Daten bleiben im Haus</small>
+          </div>
         </div>
-      </div>
+      </aside>
     </header>
 
     <!-- STEP 1: SOURCES -->
@@ -235,9 +245,105 @@
     </section>
 
     <footer class="foot">
-      <span>Duplicat-Clearner · lokal · sicher · <span id="versionTag">v1.0</span></span>
+      <span>DariaTech Data Cleanup · ein Produkt von <a href="https://www.dariatech.de" target="_blank" rel="noopener">DariaTech IT-Systemhaus</a> · lokal · sicher · <span id="versionTag">v1.0</span></span>
     </footer>
   </main>
+
+  <!-- HELP DRAWER -->
+  <div id="drawerOverlay" class="drawer-overlay"></div>
+  <aside id="helpDrawer" class="drawer" aria-label="Anleitung">
+    <div class="drawer-head">
+      <div>
+        <h2>📘 Anleitung &amp; Hilfe</h2>
+        <div class="sub">So bedienen Sie DariaTech Data Cleanup – Schritt für Schritt</div>
+      </div>
+      <button class="drawer-close" id="closeHelpBtn" type="button">Schließen ✕</button>
+    </div>
+    <div class="drawer-body">
+      <div class="help-section">
+        <h3><span class="help-badge">★</span> In Kürze</h3>
+        <p>Das Tool findet doppelte Dateien in mehreren Ordnern und kann sie entweder <strong>bereinigen</strong>
+          (sicher in Quarantäne/Papierkorb) oder die sauberen, duplikatfreien Dateien in einen
+          <strong>neuen Zielordner zusammenführen</strong>. Es läuft komplett lokal.</p>
+        <div class="help-tip">Empfehlung: Erst einen <strong>Probelauf</strong> machen, Ergebnisse prüfen, dann erst
+          tatsächlich bereinigen oder zusammenführen.</div>
+      </div>
+
+      <div class="help-section">
+        <h3><span class="help-badge">1</span> Quellordner wählen</h3>
+        <ol>
+          <li>Auf <strong>„+ Ordner auswählen"</strong> klicken und einen Ordner wählen.</li>
+          <li>Den Button mehrmals klicken, um <strong>mehrere Ordner</strong> hinzuzufügen.</li>
+          <li>Alternativ den Pfad direkt eintippen und auf <strong>„Hinzufügen"</strong> klicken.</li>
+          <li>Einzelne Ordner über <strong>„Entfernen"</strong> wieder herausnehmen.</li>
+        </ol>
+      </div>
+
+      <div class="help-section">
+        <h3><span class="help-badge">2</span> Optionen einstellen</h3>
+        <ul>
+          <li><strong>Dateitypen:</strong> Bilder, Videos, Audio, Dokumente, Archive – oder „Alle Dateitypen".</li>
+          <li><strong>Welche Datei behalten:</strong> bestimmt, welche Datei jeder Gruppe als Original gilt
+            (z. B. höchste Bildauflösung, neueste, größte).</li>
+          <li><strong>Mindest-/Maximalgröße:</strong> filtert sehr kleine oder sehr große Dateien aus.</li>
+          <li><strong>Erkennung:</strong> exakte Duplikate (SHA-256) und/oder ähnliche Bilder. Die
+            <strong>Bild-Toleranz</strong> steuert, wie ähnlich Bilder sein müssen (kleiner = strenger).</li>
+          <li><strong>Ausschlüsse:</strong> Begriffe wie <em>temp, cache, .git</em> überspringen.</li>
+        </ul>
+      </div>
+
+      <div class="help-section">
+        <h3><span class="help-badge">🧹</span> Modus „Duplikate bereinigen"</h3>
+        <ol>
+          <li>Tab <strong>„Duplikate bereinigen"</strong> wählen.</li>
+          <li>Bereinigungsart wählen: <strong>Quarantäne</strong> (empfohlen) oder <strong>Papierkorb</strong>.</li>
+          <li>Auf <strong>„Analyse starten"</strong> klicken – der Fortschritt wird live angezeigt.</li>
+          <li>Ergebnisse prüfen. <strong>„Empfohlene auswählen"</strong> markiert alle Vorschläge automatisch.</li>
+          <li>Optional einen <strong>Bericht</strong> als JSON/CSV exportieren.</li>
+          <li>Mit <strong>„Ausgewählte bereinigen"</strong> die markierten Dateien verschieben.</li>
+        </ol>
+        <div class="help-tip">Die mit „Behalten" markierte Datei jeder Gruppe lässt sich nicht versehentlich
+          auswählen – sie bleibt geschützt.</div>
+      </div>
+
+      <div class="help-section">
+        <h3><span class="help-badge">📦</span> Modus „Sauber zusammenführen" (Kernfunktion)</h3>
+        <p>Führt mehrere Ordner zu einem sauberen, duplikatfreien Bestand zusammen.</p>
+        <ol>
+          <li>Tab <strong>„Sauber zusammenführen"</strong> wählen.</li>
+          <li><strong>Zielordner</strong> angeben – ein <em>neuer</em> Ordner, nicht innerhalb der Quellen.</li>
+          <li><strong>Struktur</strong> wählen: pro Quelle getrennt, exakt spiegeln oder alles flach.</li>
+          <li><strong>Kopieren</strong> (sicher, Originale bleiben) oder <strong>Verschieben</strong> wählen.</li>
+          <li>Optional <strong>ähnliche Bilder</strong> mit zusammenfassen.</li>
+          <li>Mit <strong>„Probelauf (Vorschau)"</strong> risikofrei sehen, was passieren würde.</li>
+          <li>Mit <strong>„Jetzt zusammenführen"</strong> den sauberen Zielordner erstellen.</li>
+        </ol>
+      </div>
+
+      <div class="help-section">
+        <h3><span class="help-badge">↺</span> Quarantäne &amp; Undo</h3>
+        <p>Unten im Bereich <strong>„Quarantäne &amp; Wiederherstellen"</strong> auf <strong>„Quarantäne laden"</strong>
+          klicken, um verschobene Dateien zu sehen, markieren und über <strong>„Ausgewählte wiederherstellen"</strong>
+          zurückholen.</p>
+      </div>
+
+      <div class="help-section">
+        <h3><span class="help-badge">💾</span> Profile</h3>
+        <p>Häufige Einstellungen pro Kunde als <strong>Profil speichern</strong> und später wieder laden – inklusive
+          Ordner, Optionen und Zielordner.</p>
+      </div>
+
+      <div class="help-section">
+        <h3><span class="help-badge">🛡️</span> Sicherheit</h3>
+        <ul>
+          <li>Endgültiges Löschen ist bewusst gesperrt – nur Quarantäne oder Papierkorb.</li>
+          <li>Systemordner sind geschützt; der Zielordner darf nicht in einer Quelle liegen.</li>
+          <li>Beim Zusammenführen ist <strong>Kopieren</strong> Standard – Originale bleiben erhalten.</li>
+          <li>Während eines Laufs lässt sich jederzeit <strong>„Abbrechen"</strong> drücken.</li>
+        </ul>
+      </div>
+    </div>
+  </aside>
 
   <script src="/assets/app.js"></script>
 </body>

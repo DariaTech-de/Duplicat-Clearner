@@ -67,6 +67,10 @@ const el = {
   loadQuarantineBtn: $('#loadQuarantineBtn'),
   restoreSelectedBtn: $('#restoreSelectedBtn'),
   quarantineList: $('#quarantineList'),
+  openHelpBtn: $('#openHelpBtn'),
+  closeHelpBtn: $('#closeHelpBtn'),
+  drawerOverlay: $('#drawerOverlay'),
+  helpDrawer: $('#helpDrawer'),
 };
 
 // ---------------------------------------------------------------------------
@@ -694,6 +698,20 @@ el.restoreSelectedBtn.addEventListener('click', async () => {
   } catch (error) {
     setStatus(error.message, 'error');
   }
+});
+
+// ---------------------------------------------------------------------------
+// Help drawer
+// ---------------------------------------------------------------------------
+function setHelp(open) {
+  el.helpDrawer.classList.toggle('open', open);
+  el.drawerOverlay.classList.toggle('open', open);
+}
+el.openHelpBtn.addEventListener('click', () => setHelp(true));
+el.closeHelpBtn.addEventListener('click', () => setHelp(false));
+el.drawerOverlay.addEventListener('click', () => setHelp(false));
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') setHelp(false);
 });
 
 // ---------------------------------------------------------------------------

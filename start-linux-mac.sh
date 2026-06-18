@@ -12,6 +12,6 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 
 echo
-echo "[OK] Duplicat-Clearner startet auf http://127.0.0.1:8787"
+echo "[OK] DariaTech Data Cleanup startet auf http://127.0.0.1:8787"
 echo
 python -m uvicorn app.asgi:app --host 127.0.0.1 --port 8787
