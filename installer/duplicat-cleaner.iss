@@ -19,7 +19,7 @@ PrivilegesRequired=lowest
 ArchitecturesInstallIn64BitMode=x64
 
 [Files]
-Source: "dist\Duplicat-Cleaner.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\Duplicat-Clearner.exe"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
