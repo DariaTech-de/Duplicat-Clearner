@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:crypto/crypto.dart';
@@ -67,6 +66,6 @@ class MobileScanner {
 
   Future<String> _sha256(File file) async {
     final digest = await sha256.bind(file.openRead()).first;
-    return hex.encode(digest.bytes);
+    return digest.toString();
   }
 }
