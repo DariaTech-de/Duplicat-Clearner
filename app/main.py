@@ -41,11 +41,21 @@ app = FastAPI(title="DariaTech Data Cleanup", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://127.0.0.1:8787", "http://localhost:8787"],
+    allow_origin_regex=r"http://(127\.0\.0\.1|localhost)(:\d+)?",
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.middleware("http")
+async def _no_cache(request, call_next):
+    """Local tool that updates between versions: never let the browser cache the UI."""
+    response = await call_next(request)
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    return response
 
 app.mount("/assets", StaticFiles(directory=STATIC_DIR), name="assets")
 app.include_router(api_v1_router)
