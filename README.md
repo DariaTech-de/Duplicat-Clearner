@@ -1,8 +1,14 @@
-# Duplicat-Clearner
+<p align="center">
+  <img src="web/logo.svg" alt="DariaTech Data Cleanup" width="380">
+</p>
+
+# DariaTech Data Cleanup
 
 Ein lokales, kundenfähiges Tool zum **Finden, sicheren Bereinigen und sauberen Zusammenführen** von mehrfach
 vorhandenen Dateien, Bildern und Videos. Läuft komplett lokal, lädt nichts in eine Cloud und arbeitet
 standardmäßig mit Quarantäne als Sicherheitsnetz.
+
+Ein Produkt von **DariaTech IT-Systemhaus** ([dariatech.de](https://www.dariatech.de)).
 
 ## Highlights
 
@@ -77,7 +83,7 @@ Danach `http://127.0.0.1:8787` öffnen.
 ## Windows-App über GitHub Actions bauen
 
 Die Action `.github/workflows/build-windows.yml` läuft bei Push auf `main` und kann manuell gestartet werden
-(**Actions → Build Windows App → Run workflow**). Das Artefakt `Duplicat-Clearner-Windows` enthält die EXE.
+(**Actions → Build Windows App → Run workflow**). Das Artefakt `DariaTech-Data-Cleanup-Windows` enthält die EXE.
 Die EXE startet lokal einen kleinen Webserver auf `http://127.0.0.1:8787`.
 
 ## Entwicklung & Tests

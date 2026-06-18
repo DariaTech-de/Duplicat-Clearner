@@ -37,7 +37,7 @@ BASE_DIR = _base_dir()
 STATIC_DIR = BASE_DIR / "web"
 LAST_SCAN: dict | None = None
 
-app = FastAPI(title="Duplicat-Clearner", version="1.0.0")
+app = FastAPI(title="DariaTech Data Cleanup", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -113,7 +113,7 @@ def _open_directory_dialog(title: str) -> str:
 @app.get("/api/select-folder")
 def select_folder() -> dict:
     """Open a native folder picker and return the selected path (call repeatedly to add several)."""
-    return {"folder": _open_directory_dialog("Quellordner für Duplicat-Clearner auswählen")}
+    return {"folder": _open_directory_dialog("Quellordner für DariaTech Data Cleanup auswählen")}
 
 
 @app.get("/api/select-target")

@@ -88,7 +88,7 @@ def _to_consolidate_options(request: ConsolidateRequestV1) -> ConsolidateOptions
 @router.get("/capabilities")
 def capabilities() -> dict:
     return {
-        "product": "Duplicat-Clearner Enterprise",
+        "product": "DariaTech Data Cleanup",
         "api_version": "v1",
         "local_first": True,
         "background_scans": True,

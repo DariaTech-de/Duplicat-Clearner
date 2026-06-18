@@ -21,9 +21,9 @@ class EnterpriseStore:
     @staticmethod
     def default_path() -> Path:
         if os.name == "nt":
-            base = Path(os.environ.get("LOCALAPPDATA", str(Path.home()))) / "Duplicat-Clearner"
+            base = Path(os.environ.get("LOCALAPPDATA", str(Path.home()))) / "DariaTech Data Cleanup"
         else:
-            base = Path(os.environ.get("XDG_DATA_HOME", str(Path.home() / ".local" / "share"))) / "duplicat-cleaner"
+            base = Path(os.environ.get("XDG_DATA_HOME", str(Path.home() / ".local" / "share"))) / "dariatech-data-cleanup"
         return base / "enterprise.sqlite3"
 
     def _connect(self) -> sqlite3.Connection:

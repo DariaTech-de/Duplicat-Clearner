@@ -1,0 +1,15 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DariaTech Data Cleanup">
+  <defs>
+    <linearGradient id="dtBadge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0E4A39"/>
+      <stop offset="1" stop-color="#06C1A0"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="24" y="24" width="464" height="464" rx="112" fill="url(#dtBadge)"/>
+
+  <!-- DariaTech chevron mark -->
+  <path d="M286 150 L180 256 L286 362" fill="none" stroke="#ffffff" stroke-width="46"
+        stroke-linejoin="miter" stroke-linecap="butt"/>
+  <path d="M340 200 L396 256 L340 312 L284 256 Z" fill="#ffffff"/>
+</svg>

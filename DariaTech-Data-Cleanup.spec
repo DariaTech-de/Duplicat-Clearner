@@ -32,7 +32,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='Duplicat-Clearner',
+    name='DariaTech-Data-Cleanup',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

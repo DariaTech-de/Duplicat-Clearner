@@ -1,0 +1,19 @@
+<svg width="440" height="96" viewBox="0 0 440 96" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DariaTech Data Cleanup">
+  <defs>
+    <linearGradient id="dtBadgeH" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0E4A39"/>
+      <stop offset="1" stop-color="#06C1A0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- badge with DariaTech chevron mark -->
+  <g transform="translate(8,8)">
+    <rect x="0" y="0" width="80" height="80" rx="20" fill="url(#dtBadgeH)"/>
+    <path d="M45 24 L28 41 L45 58" fill="none" stroke="#ffffff" stroke-width="7.5" stroke-linejoin="miter"/>
+    <path d="M53 32 L62 41 L53 50 L44 41 Z" fill="#ffffff"/>
+  </g>
+
+  <!-- wordmark -->
+  <text x="104" y="40" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="3" fill="#06C1A0">DARIATECH</text>
+  <text x="104" y="72" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="-0.5" fill="#0E4A39">Data Cleanup</text>
+</svg>
