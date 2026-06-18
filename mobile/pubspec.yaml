@@ -1,0 +1,18 @@
+name: duplicat_cleaner_mobile
+description: Mobile client for Duplicat-Clearner Enterprise
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  crypto: ^3.0.3
+  file_picker: ^8.1.2
+  http: ^1.2.2
+  path: ^1.9.0
+
+flutter:
+  uses-material-design: true

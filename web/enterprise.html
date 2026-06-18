@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Duplicat-Clearner Enterprise</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Enterprise-Modus</p>
+        <h1>Große Scans mit Fortschritt</h1>
+        <p class="lead">Startet Scans als Hintergrundjobs, zeigt Fortschritt und nutzt auditierte Aktionen.</p>
+      </div>
+      <a class="secondary small-btn" href="/assets/undo.html">Aktionen öffnen</a>
+    </section>
+
+    <section class="panel grid-panel">
+      <div class="wide">
+        <label for="folders">Ordnerpfade, ein Ordner pro Zeile</label>
+        <textarea id="folders" rows="5" placeholder="D:\\Kunde\\Fotos"></textarea>
+      </div>
+      <div>
+        <label for="keepRule">Welche Datei behalten?</label>
+        <select id="keepRule">
+          <option value="oldest">Älteste Datei</option>
+          <option value="newest">Neueste Datei</option>
+          <option value="largest">Größte Datei</option>
+          <option value="highest_resolution">Höchste Bildauflösung</option>
+        </select>
+      </div>
+      <div class="wide chips">
+        <label><input id="findExact" type="checkbox" checked> Exakte Duplikate</label>
+        <label><input id="findSimilarImages" type="checkbox"> Ähnliche Bilder</label>
+        <label><input id="includeAll" type="checkbox"> Alle Dateitypen</label>
+      </div>
+      <div class="wide controls">
+        <button id="startBtn">Enterprise-Scan starten</button>
+        <button id="stopBtn" class="secondary hidden">Scan stoppen</button>
+        <button id="selectBtn" class="secondary hidden">Vorschläge auswählen</button>
+        <button id="applyBtn" class="danger hidden">Auditierte Aktion ausführen</button>
+      </div>
+    </section>
+
+    <section id="status" class="status hidden"></section>
+    <section id="summary" class="summary-grid hidden"></section>
+    <section id="results" class="results"></section>
+  </main>
+  <script src="/assets/enterprise.js"></script>
+</body>
+</html>

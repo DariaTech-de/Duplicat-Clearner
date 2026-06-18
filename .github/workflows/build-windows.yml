@@ -4,11 +4,12 @@ on:
   push:
     branches:
       - main
+      - enterprise-hardening
   workflow_dispatch:
 
 jobs:
   build-windows:
-    name: Build Windows EXE
+    name: Build Windows EXE and installer
     runs-on: windows-latest
 
     steps:
@@ -29,13 +30,37 @@ jobs:
         run: |
           pyinstaller --clean --noconfirm Duplicat-Clearner.spec
 
+      - name: Prepare signing certificate
+        if: ${{ secrets.WINDOWS_CODESIGN_CERT_BASE64 != '' }}
+        shell: pwsh
+        run: |
+          [IO.File]::WriteAllBytes("codesign.pfx", [Convert]::FromBase64String("${{ secrets.WINDOWS_CODESIGN_CERT_BASE64 }}"))
+
+      - name: Sign EXE
+        if: ${{ secrets.WINDOWS_CODESIGN_CERT_BASE64 != '' }}
+        shell: pwsh
+        run: .\scripts\sign-windows.ps1 -FilePath dist\Duplicat-Clearner.exe -CertificatePath codesign.pfx -CertificatePassword "${{ secrets.WINDOWS_CODESIGN_CERT_PASSWORD }}"
+
+      - name: Install Inno Setup
+        run: choco install innosetup -y
+
+      - name: Build installer
+        run: iscc installer\duplicat-cleaner.iss
+
+      - name: Sign installer
+        if: ${{ secrets.WINDOWS_CODESIGN_CERT_BASE64 != '' }}
+        shell: pwsh
+        run: Get-ChildItem dist\installer\*.exe | ForEach-Object { .\scripts\sign-windows.ps1 -FilePath $_.FullName -CertificatePath codesign.pfx -CertificatePassword "${{ secrets.WINDOWS_CODESIGN_CERT_PASSWORD }}" }
+
       - name: Create ZIP package
         run: |
           powershell Compress-Archive -Path dist\Duplicat-Clearner.exe -DestinationPath dist\Duplicat-Clearner-Windows.zip -Force
 
-      - name: Upload Windows artifact
+      - name: Upload Windows artifacts
         uses: actions/upload-artifact@v4
         with:
           name: Duplicat-Clearner-Windows
-          path: dist/Duplicat-Clearner-Windows.zip
+          path: |
+            dist/Duplicat-Clearner-Windows.zip
+            dist/installer/*.exe
           if-no-files-found: error
